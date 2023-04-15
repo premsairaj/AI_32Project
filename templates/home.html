@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Panel Failure Prediction Model
+    </title>
+</head>
+<body style="background-color:powderblue;"></body>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.topnav-right {
+  float: right;
+}
+</style>
+</head>
+<body>
+
+<div class="topnav">
+  <a href="https://github.com/premsairaj">Github</a>
+  <a href="https://www.linkedin.com/in/prem-sai-pallapotu-533b56198/">Linkedin</a>
+  <div class="topnav-right">
+    <a href="#search">Search</a>
+    <a href="https://360digitmg.com/">360digiTMG</a>
+  </div>
+</div>
+
+
+
+</body>
+<head>
+    <style>
+    h1 {text-align: center;}
+    body {text-align: center;}
+    </style>
+    </head>
+
+
+
+
+
+
+
+
+
+
+    </head>
+    
+    <body style="background-color:white;">
+
+        <div class="login">
+            <img src="https://innodatatics.ai/assets/innologo.png">
+        <h1 style="color:red;">AI Project 32
+        </h1>
+
+
+       
+
+            </div>
+
+
+            <div>
+                <br><br>
+                <form action="/" method="POST" enctype="multipart/form-data">
+                  <div class='data' align="center">
+                        <input multiple type="file" onchange="convertbase64();" id="uploadfile" name="input" accept="image/png, image/jpeg,image/jpg,video/mp4">
+                       
+                        <input id="predict" type="submit" value="submit">
+                        <input type="hidden" id="Base64" name="b64" value>
+                        <br><br>
+                        
+                    </div>
+                  </form>
+                  <br>
+                
+
+              </div> 
+        <script type="text/javascript"> 
+              var dict64=new Object();
+              var str='';
+              function convertbase64()
+             {      
+                     var count=0;
+                     for(let file of document.getElementById("uploadfile").files)
+                     {
+                           var filereader = new FileReader();
+                           filereader.onload = function (evt) 
+                           {
+                               var base64 = evt.target.result; 
+                           
+                               str=str+file.name+"*"+base64+"  ";
+                               
+                               if(count==document.getElementById("uploadfile").files.length)
+                               {
+                                //console.log("{"+str.slice(0,str.length-1)+"}")
+                                document.getElementById("Base64").value=str;
+                                //console.log(str);
+        
+                               }                                            
+                           }
+                           count=count+1;
+                     filereader.readAsDataURL(file);     
+                     }
+                  
+               }
+        </script> 
+        {% if update %}
+
+        <table align="center">
+          <tr>
+              <th>filename</th>
+              <th>Output</th>
+              <th>Rods_Count</th>
+          </tr>
+          {% for key, value in update.items() %}
+          <tr>
+            <td>{{ key }}</td>
+            {% if key.split(".")[-1]!='mp4'%}
+                <td><img src="data:image/jpeg;base64,{{ value[0] }}" width="300" height="240"></td>
+            {% else %}
+                <td><a href="data:video/mp4;base64,{{ value[0] }}"download>Video Download</td>
+            {% endif %}
+            <td>{{value[1]}}</td>
+          </tr>
+          {% endfor %}
+          {% endif %}
+        </table>
+        </body>          
+    </body>
+</html>   
