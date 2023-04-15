@@ -11,7 +11,7 @@ import time
 class yolov8model:
     def __init__(self,input):
         self.input=input  
-    def bestmodel(self,modelpath="E:\\AI_32Project\\model_kaggle\\kaggle\\working\\runs\\detect\\train\\weights\\best.pt"):
+    def bestmodel(self,modelpath="E:\\AI_32Project\\flask\\best.pt"):
         imageslist={}
         update_list={}
         try:
@@ -32,7 +32,7 @@ class yolov8model:
         except IndexError as ie:
             pass
         return update_list  
-    def videoprediction(self,modelpath="E:\\AI_32Project\\model_kaggle\\kaggle\\working\\runs\\detect\\train\\weights\\best.pt"):
+    def videoprediction(self,modelpath="E:\\AI_32Project\\flask\\best.pt"):
         videodetails={}
         dir_path = "E:\\AI_32Project\\flask\\runs\\detect"
 
