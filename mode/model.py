@@ -8,6 +8,7 @@ import tempfile
 import numpy as np
 from werkzeug.utils import secure_filename
 import time
+from mode.detection_count import count
 class yolov8model:
     def __init__(self,input):
         self.input=input  
@@ -43,14 +44,18 @@ class yolov8model:
         recent_file = max(all_files, key=lambda x: os.path.getmtime(os.path.join(dir_path, x)))
 
         filename=self.input.split("*")[0]
-        decodevideo=base64.b64decode(self.input.split("*")[1].split(",")[1])
-        with open(filename, 'wb') as f:
-             f.write(decodevideo)
-             f.close()
+        #decodevideo=base64.b64decode(self.input.split("*")[1].split(",")[1])
+        #with open(filename, 'wb') as f:
+        #     f.write(decodevideo)
+        #     f.close()
         model=YOLO(modelpath)
-        result=model.predict(source=os.getcwd()+"\\"+filename,save=True)
-        with open(dir_path+"\\"+recent_file+"\\"+filename, 'rb') as fp:
-            videodetails[self.input.split("*")[0]] =[base64.b64encode(fp.read()).decode('utf-8')]
-        return videodetails
+        #result=model.predict(source=os.getcwd()+"\\"+filename,save=True)
+        #with open(dir_path+"\\"+recent_file+"\\"+filename, 'rb') as fp:
+        #   videodetails[self.input.split("*")[0]] =[base64.b64encode(fp.read()).decode('utf-8')]
+        #return videodetails
+        ddc=count(self.input,model,filename)
+        return ddc.video_count()
+
+    
 
 

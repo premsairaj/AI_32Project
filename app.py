@@ -22,6 +22,7 @@ def home():
         else:
             md=model.yolov8model(request.form['b64'])
             outlist=md.videoprediction()
+            
             return render_template('home.html',update=outlist)
 
 
